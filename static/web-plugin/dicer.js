@@ -1,3 +1,10 @@
+const colorType = {
+    'Standard': '#a6a6a8',
+    'Dragon': '#c90e27',
+    'Humanisme': '#0e1ac9',
+    'Fatalité': '#040405'
+};
+
 class Randomizer {
     constructor() {}
 
@@ -16,9 +23,11 @@ class ProphecyResult {
     }
 
     toString() {
+        const iconColor = colorType[this.type];
+        const iconType = `<span style=:"color: ${iconColor}">⯀</span>`;
         const critique = this.reussiteCritique ? `( Réussite critique )` : 
             this.echecCritique ? `( Echec critique)` : '';
-        return `${this.type} : ${this.dice} => ${this.finalResult} ${critique}`;
+        return `${iconType} ${this.dice} => ${this.finalResult} ${critique}`;
     }
 }
 
