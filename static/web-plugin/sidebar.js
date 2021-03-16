@@ -16,7 +16,7 @@ let lastRolls = [];
 
 
 const randomizer = new Randomizer();
-const prophecy = new ProphecyTest();
+const prophecy = new ProphecyTest(randomizer);
 
 miro.onReady(() => {
     reinitData();
@@ -33,7 +33,7 @@ function formChange() {
         attribut: formData.get('attribut'),
         competence: formData.get('competence'),
         bonus: formData.get('bonus'),
-        rolls: lastRolls.toArray()
+        rolls: lastRolls ? lastRolls.toArray() : null
     }
     localStorage.setItem('PROPHECY_ROLLER', JSON.stringify(data));
 }
