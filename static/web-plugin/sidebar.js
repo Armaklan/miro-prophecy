@@ -33,7 +33,7 @@ function formChange() {
         attribut: formData.get('attribut'),
         competence: formData.get('competence'),
         bonus: formData.get('bonus'),
-        rolls: lastRolls ? lastRolls.toArray() : null
+        rolls: lastRolls ? lastRolls : []
     }
     localStorage.setItem('PROPHECY_ROLLER', JSON.stringify(data));
 }
