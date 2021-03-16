@@ -55,8 +55,8 @@ function reinitData() {
 async function launchDice(e) {
     e.preventDefault()
     const results = prophecy.evaluate(attributInput.valueAsNumber || 0, competenceInput.valueAsNumber || 0, bonus.valueAsNumber || 0, tendanceInput.checked);
-    printResult(rolls)
-    lastRolls = rolls
+    printResult(results)
+    lastRolls = results
     formChange()
     return false
 }
