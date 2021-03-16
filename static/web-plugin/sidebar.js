@@ -69,7 +69,7 @@ async function printResult(rolls) {
 async function printResultInSticker(rolls) {
     const stickersToUpdate = await searchSticker();
     const results = rolls.map(r => `${r.toString()}`).join('<br>');
-    const textToPrint = `<p>${pseudoInput.value}</p><br> ${results}`
+    const textToPrint = `<p>${pseudoInput.value}</p><br><span style="font-size: 14px"> ${results} </span>`
 
     if(stickersToUpdate) {
         miro.board.widgets.update(stickersToUpdate.map((s) => ({
