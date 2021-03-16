@@ -24,7 +24,7 @@ class ProphecyResult {
 
     toString() {
         const iconColor = colorType[this.type];
-        const iconType = `<span style=:"color: ${iconColor}">⯀</span>`;
+        const iconType = `<span style="color: ${iconColor}">⯀</span>`;
         const critique = this.reussiteCritique ? `( Réussite critique )` : 
             this.echecCritique ? `( Echec critique)` : '';
         return `${iconType} ${this.dice} => ${this.finalResult} ${critique}`;

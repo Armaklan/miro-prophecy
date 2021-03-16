@@ -68,7 +68,7 @@ async function printResult(rolls) {
 
 async function printResultInSticker(rolls) {
     const stickersToUpdate = await searchSticker();
-    const results = rolls.map(r => `${r.toString()}<br>`);
+    const results = rolls.map(r => `${r.toString()}`).join('<br>');
     const textToPrint = `<p>${pseudoInput.value}</p><br> ${results}`
 
     if(stickersToUpdate) {
@@ -92,7 +92,7 @@ async function searchSticker() {
 }
 
 function printResultInSidebar(rolls, raises) {
-    const results = rolls.map(r => `${r.toString()}<br>`);
+    const results = rolls.map(r => `${r.toString()}`).join('<br>');
     result.innerHTML = `${results}`;
 }
 
