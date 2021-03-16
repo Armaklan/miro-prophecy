@@ -39,7 +39,7 @@ function formChange() {
 }
 
 function reinitData() {
-    const data = localStorage.getItem('7TH_SEA_ROLLER');
+    const data = localStorage.getItem('PROPHECY_ROLLER');
     const parseData = data ? JSON.parse(data) : null;
     if(parseData) {
         pseudoInput.value = parseData.pseudo;
