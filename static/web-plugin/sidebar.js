@@ -30,7 +30,9 @@ miro.onReady(() => {
 form.addEventListener('change', formChange);
 form.addEventListener('submit', launchDice);
 formInitiative.addEventListener('submit', launchDiceInitiative);
+formInitiative.addEventListener('change', formChange);
 formDommage.addEventListener('submit', launchDiceDommage);
+formDommage.addEventListener('change', formChange);
 
 
 function formChange() {

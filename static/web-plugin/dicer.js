@@ -37,7 +37,7 @@ class InitiativeResult {
     }
 
     toString() {
-        return this.dices.join(', ');
+        return this.dices.join('<br>');
     }
 }
 
@@ -97,10 +97,10 @@ class ProphecyTest {
     }
 
     initiative(nbDices) {
-        return this.dicer.launchInitiative(nbDices);
+        return [this.dicer.launchInitiative(nbDices)];
     }
 
     dommage(nbDices, bonus) {
-        return this.dicer.launchDommages(nbDices, bonus);
+        return [this.dicer.launchDommages(nbDices, bonus)];
     }
 }
