@@ -69,12 +69,12 @@ class ProphecyDice {
     }
 
     launchInitiative(nbDices) {
-        const dices = new Array(nbDices).map(() => this.randomizer.randomValue(10));
+        const dices = new Array(nbDices).fill(0).map(() => this.randomizer.randomValue(10));
         return new InitiativeResult(dices);
     }
 
     launchDommages(nbDices, bonus) {
-        const dices = new Array(nbDices).map(() => this.randomizer.randomValue(10));
+        const dices = new Array(nbDices).fill(0).map(() => this.randomizer.randomValue(10));
         const results = dices.reduce((prev, curr) => prev + curr, 0) + bonus;
         return new DommageResult(dices, results);
     }
