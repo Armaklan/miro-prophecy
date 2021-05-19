@@ -78,8 +78,15 @@
     
     <p>&nbsp;</p>
 
+    <p>Derniers résultats : </p>
+    <div class="row row-result">
+      <p id="result">
+        &nbsp;
+      </p>
+    </div>
+
     <form id="formLauncher" class="container">
-      
+      <div class="rtb-sidebar-caption">Test standard</div>
       <div class="row"><label for="pseudo">Pseudo</label><input type="text" name="pseudo" id="pseudo" value="Pseudo"></div>
       <div class="row"><label for="attribut">Attribut</label><input type="number" name="attribut" id="attribut" value="3"></div>
       <div class="row"><label for="competence">Compétence</label><input type="number" name="competence" id="competence" value="5"></div>
@@ -87,13 +94,21 @@
       <div class="row"><label for="tendance">Jets de tendance</label><input type="checkbox" id="tendance" name="tendance"></div>
 
       <button type="submit" id="diceLaunch" class="btn-action">Lancer les dés</button>
-      <p>Derniers résultats : </p>
-      <div class="row row-result">
-        <p id="result">
-          &nbsp;
-        </p>
-      </div>
     </form>
+
+    <form id="formLauncherInitiative" class="container">
+      <div class="rtb-sidebar-caption">Initiative</div>
+      <div class="row"><label for="initiative">Nombre de dé</label><input type="number" name="initiative" id="initiative" value="3"></div>
+      <button type="submit" id="diceLaunchInitiative" class="btn-action">Lancer les dés</button>
+    </form>
+
+    <form id="formLauncherDommage" class="container">
+      <div class="rtb-sidebar-caption">Dommages</div>
+      <div class="row"><label for="baseDmg">Base</label><input type="number" name="baseDmg" id="baseDmg" value="8"></div>
+      <div class="row"><label for="nbDiceDmg">Nombre de dés</label><input type="number" name="nbDiceDmg" id="nbDiceDmg" value="1"></div>
+      <button type="submit" id="diceLaunchDommage" class="btn-action">Lancer les dés</button>
+    </form>
+  
     <script src="https://miro.com/app/static/sdk.1.1.js"></script>
     <script src="dicer.js"></script>
     <script src="sidebar.js"></script>

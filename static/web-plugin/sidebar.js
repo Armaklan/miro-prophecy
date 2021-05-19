@@ -5,12 +5,17 @@ let widgetInfo = document.querySelector('.widget-info')
 let placeholder = document.querySelector('.no-selected-widget')
 
 let form = document.querySelector('#formLauncher')
+let formInitiative = document.querySelector('#formLauncherInitiative')
+let formDommage = document.querySelector('#formLauncherDommage')
 let diceLaunchButton = document.querySelector('#diceLaunch')
 let pseudoInput = document.querySelector('#pseudo')
 let attributInput = document.querySelector('#attribut')
 let competenceInput = document.querySelector('#competence')
 let bonusInput = document.querySelector('#bonus')
 let tendanceInput = document.querySelector('#tendance')
+let initiativeInput = document.querySelector('#initiative');
+let baseDmgInput = document.querySelector('#baseDmg');
+let nbDiceDmgInput = document.querySelector('#nbDiceDmg');
 let result = document.querySelector('#result')
 let lastRolls = [];
 
@@ -24,16 +29,23 @@ miro.onReady(() => {
 
 form.addEventListener('change', formChange);
 form.addEventListener('submit', launchDice);
+formInitiative.addEventListener('submit', launchDiceInitiative);
+formDommage.addEventListener('submit', launchDiceDommage);
 
 
 function formChange() {
     const formData = new FormData(form);
+    const formDataInitiative = new FormData(formInitiative);
+    const formDataDommage = new FormData(formDommage);
     const data = {
         pseudo: formData.get('pseudo'),
         attribut: formData.get('attribut'),
         competence: formData.get('competence'),
         bonus: formData.get('bonus'),
-        rolls: lastRolls ? lastRolls : []
+        rolls: lastRolls ? lastRolls : [],
+        initiative: formDataInitiative.get('initiative'),
+        nbDiceDmg: formDataDommage.get('nbDiceDmg'),
+        baseDmg: formDataDommage.get('baseDmg')
     }
     localStorage.setItem('PROPHECY_ROLLER', JSON.stringify(data));
 }
@@ -46,6 +58,9 @@ function reinitData() {
         competenceInput.value = parseData.competence;
         attributInput.value = parseData.attribut;
         bonusInput.value = parseData.bonus;
+        initiativeInput.value = parseData.initiative;
+        nbDiceDmg.value = parseData.nbDiceDmg;
+        baseDmgInput.value = parseData.baseDmg;
     }
 }
 
@@ -60,6 +75,23 @@ async function launchDice(e) {
     formChange()
     return false
 }
+
+ async function launchDiceInitiative(e) {
+    e.preventDefault()
+    const results = prophecy.initiative(initiativeInput.valueAsNumber || 1);
+    printResult(results)
+    formChange()
+    return false
+}
+
+async function launchDiceDommage(e) {
+    e.preventDefault()
+    const results = prophecy.dommage(nbDiceDmgInput.valueAsNumber || 1, baseDmgInput.valueAsNumber || 0);
+    printResult(results)
+    formChange()
+    return false
+}
+
 
 async function printResult(rolls) {
     await printResultInSticker(rolls);
@@ -94,21 +126,4 @@ async function searchSticker() {
 function printResultInSidebar(rolls, raises) {
     const results = rolls.map(r => `${r.toString()}`).join('<br>');
     result.innerHTML = `${results}`;
-}
-
-const LS_KEY = 'rtb-plugin-widget-info'
-
-
-/**
- * Manipulation du local storage
-  */
-function saveData(widgetId, text) {
-  let data = JSON.parse(localStorage.getItem(LS_KEY)) || {}
-  data[widgetId] = text
-  localStorage.setItem(LS_KEY, JSON.stringify(data))
-}
-
-function getData(widgetId) {
-  let data = JSON.parse(localStorage.getItem(LS_KEY)) || {}
-  return data[widgetId] || ''
 }

@@ -31,6 +31,27 @@ class ProphecyResult {
     }
 }
 
+class InitiativeResult {
+    constructor(dices) {
+        this.dices = dices;
+    }
+
+    toString() {
+        return this.dices.join(', ');
+    }
+}
+
+class DommageResult {
+    constructor(dices, result) {
+        this.dices = dices;
+        this.result = result;
+    }
+
+    toString() {
+        return `${this.dices.join(', ')} => ${this.result}`;
+    }
+}
+
 class ProphecyDice {
     constructor(randomizer) {
         this.randomizer = randomizer;
@@ -45,6 +66,17 @@ class ProphecyDice {
             dice === 10 && this.randomizer.randomValue(10) <= competence,
             dice === 1 && this.randomizer.randomValue(10) >= competence
         );
+    }
+
+    launchInitiative(nbDices) {
+        const dices = new Array(nbDices).map(() => this.randomizer.randomValue(10));
+        return new InitiativeResult(dices);
+    }
+
+    launchDommages(nbDices, bonus) {
+        const dices = new Array(nbDices).map(() => this.randomizer.randomValue(10));
+        const results = dices.reduce((prev, curr) => prev + curr, 0) + bonus;
+        return new DommageResult(dices, results);
     }
 }
 
@@ -62,5 +94,13 @@ class ProphecyTest {
             this.dicer.launch('Humanisme', attribut, competence, bonus),
             this.dicer.launch('Fatalité', attribut, competence, bonus)
         ];
-    }   
+    }
+
+    initiative(nbDices) {
+        return this.dicer.launchInitiative(nbDices);
+    }
+
+    dommage(nbDices, bonus) {
+        return this.dicer.launchDommages(nbDices, bonus);
+    }
 }
