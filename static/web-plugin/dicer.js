@@ -24,10 +24,10 @@ class ProphecyResult {
 
     toString() {
         const iconColor = colorType[this.type];
-        const iconType = `<i style="color: ${iconColor}">⯀</i>`;
+        const iconType = `<p style="color: ${iconColor}">⯀`;
         const critique = this.reussiteCritique ? `( Réussite critique )` : 
             this.echecCritique ? `( Echec critique)` : '';
-        return `${iconType} ${this.dice} => ${this.finalResult} ${critique}`;
+        return `${iconType} ${this.dice} => ${this.finalResult} ${critique}</p>`;
     }
 }
 
